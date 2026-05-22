@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EuroInvest Advisor — Asesoría de Inversión</title>
+  <style>
+    :root {
+      --background: #0b1220;
+      --surface: #131b33;
+      --surface-soft: #192241;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8edf7;
+      --text-muted: #8b98b8;
+      --accent: #4f86ff;
+      --accent-strong: #1cd8d2;
+      --highlight: #f5b765;
+      --shadow: 0 24px 70px rgba(0,0,0,0.25);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: radial-gradient(circle at top, rgba(79,134,255,0.14), transparent 38%), linear-gradient(180deg, #0b1220 0%, #080d18 100%); color: var(--text); }
+    a { color: inherit; text-decoration: none; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 28px 24px 48px; }
+    .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; background: rgba(19,27,51,0.95); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-mark { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #fff; font-size: 1.15rem; font-weight: 700; }
+    .brand-title { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-title strong { font-size: 1.2rem; letter-spacing: -0.02em; }
+    .brand-title span { color: var(--text-muted); font-size: 0.95rem; }
+    .topbar-note { color: var(--text-muted); font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.08); padding: 10px 14px; border-radius: 999px; }
+    .hero { margin: 32px 0 42px; padding: 38px 34px; background: rgba(19,27,51,0.9); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; background: rgba(79,134,255,0.14); border-radius: 50%; }
+    .hero-title { font-size: clamp(2rem, 3.2vw, 3.6rem); line-height: 1.03; margin-bottom: 18px; }
+    .hero-copy { max-width: 780px; color: var(--text-muted); line-height: 1.75; font-size: 1rem; margin-bottom: 28px; }
+    .hero-copy strong { color: var(--text); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { cursor: pointer; border: 1px solid transparent; border-radius: 999px; padding: 12px 22px; font-size: 0.95rem; font-weight: 600; transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #fff; box-shadow: 0 14px 32px rgba(39,112,255,0.28); }
+    .button-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--border); }
+    .button-ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,0.12); }
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 24px; }
+    .controls .button.active { background: #0f5bfb; border-color: var(--accent); }
+    .panel { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+    .panel.active { display: block; opacity: 1; transform: translateY(0); }
+    .section { margin-top: 30px; }
+    .section-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+    .section-heading h2 { font-size: 1.55rem; font-weight: 700; margin: 0; }
+    .section-heading p { margin: 0; color: var(--text-muted); max-width: 680px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .card { background: rgba(19,27,51,0.9); border: 1px solid var(--border); border-radius: 22px; padding: 24px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.01); }
+    .card-title { font-size: 0.88rem; font-weight: 700; color: var(--accent); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .card img { width: 100%; height: auto; border-radius: 16px; display: block; margin-top: 12px; }
+    .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .summary-card { border-radius: 18px; border: 1px solid var(--border); padding: 20px; background: rgba(255,255,255,0.03); }
+    .summary-card strong { display: block; font-size: 1.3rem; margin-bottom: 6px; }
+    .summary-card span { color: var(--text-muted); font-size: 0.88rem; }
+    .conclusion-block { background: rgba(79,134,255,0.08); border: 1px solid rgba(79,134,255,0.14); border-radius: 24px; padding: 28px; margin-top: 30px; }
+    .conclusion-block h3 { margin: 0 0 14px; font-size: 1.35rem; }
+    .conclusion-block p { margin: 0 0 12px; color: var(--text-muted); line-height: 1.75; }
+    .conclusion-block .highlight { color: var(--accent-strong); font-weight: 600; }
+    .quote-line { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; color: var(--text-muted); font-size: 0.9rem; }
+    @media (max-width: 1024px) { .grid-2, .grid-3, .summary { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) { .hero { padding: 28px 20px; } .topbar { flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">EI</div>
+        <div class="brand-title"><strong>EuroInvest Advisor</strong><span>Consultoría estratégica de inversión</span></div>
+      </div>
+      <div class="topbar-note">Análisis con datos de <strong>data_clean3.csv</strong> · 26 capitales · 2024‑2026</div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-title">Recomendaciones de inversión basadas en datos reales.</div>
+      <p class="hero-copy">Explora los sectores de <strong>energía</strong> y <strong>movilidad eléctrica</strong> con un informe visual y directo. Selecciona tu área de interés para ver los gráficos locales y las conclusiones estratégicas.</p>
+      <div class="controls" style="justify-content:center;">
+        <button class="button button-primary active" id="btn-section-energy">Energía</button>
+        <button class="button button-secondary" id="btn-section-auto">Automóviles</button>
+      </div>
+    </section>
+
+    <main>
+      <section class="panel active" id="panel-energy">
+        <div class="section-heading">
+          <div>
+            <h2>Energía renovable</h2>
+            <p>Selecciona el subsector para ver el gráfico asociado y las recomendaciones de inversión.</p>
+          </div>
+        </div>
+
+        <div class="controls" style="justify-content:center; margin-bottom: 30px;">
+          <button class="button button-ghost active" data-energy="solar">Solar</button>
+          <button class="button button-ghost" data-energy="hydro">Hidráulica</button>
+          <button class="button button-ghost" data-energy="wind">Eólica</button>
+        </div>
+
+        <div class="card" id="content-solar">
+          <div class="card-title">Potencial solar</div>
+          <p>Evaluación basada en índice UV, condiciones de cielo y temperatura promedio. La animación mensual muestra dónde y cuándo la radiación solar es más intensa.</p>
+          <img src="gràfics_fotos/solar/uv_index_animado.gif" alt="Mapa UV animado por mes" loading="lazy">
+          <div class="conclusion-block">
+            <h3>Oportunidad principal</h3>
+            <p><span class="highlight">Madrid, Roma y Tirana</span> destacan por sus altas temperaturas y condiciones soleadas constantes, lo que favorece instalaciones fotovoltaicas de alto rendimiento.</p>
+            <p>Las capitales del sur de Europa muestran un <strong>retorno potencial más rápido</strong> en comparación con las regiones nórdicas, donde la producción es más estacional.</p>
+          </div>
+        </div>
+
+        <div class="card" id="content-hydro" style="display:none; margin-top:30px;">
+          <div class="card-title">Potencial hidráulico</div>
+          <p>Estimación basada en humedad, lluvia y condiciones meteorológicas persistentes. La animación mensual ayuda a ver qué ciudades concentran más lluvia y en qué momentos del año.</p>
+          <img src="gràfics_fotos/hidràulica/rain_animado.gif" alt="Mapa de lluvia animado por mes" loading="lazy">
+          <div class="conclusion-block">
+            <h3>Oportunidad principal</h3>
+            <p><span class="highlight">Oslo, Londres y Zúrich</span> tienen condiciones favorables para proyectos hidráulicos, con episodios frecuentes de lluvia y recursos de agua estable.</p>
+            <p>La energía hidráulica es especialmente atractiva para inversiones de mediano/largo plazo en regiones con redes de agua bien desarrolladas.</p>
+          </div>
+        </div>
+
+        <div class="card" id="content-wind" style="display:none; margin-top:30px;">
+          <div class="card-title">Potencial eólico</div>
+          <p>Evaluación sobre vientos sostenidos, estabilidad climática y zonas de baja densidad urbana. El GIF mensual muestra los cambios de velocidad del viento a lo largo del año.</p>
+          <img src="gràfics_fotos/eòlica/wind_kph_animado.gif" alt="Mapa de velocidad del viento animado por mes" loading="lazy">
+          <div class="conclusion-block">
+            <h3>Oportunidad principal</h3>
+            <p><span class="highlight">Copenhague, Ámsterdam y Berlín</span> muestran patrones de viento sólidos y condiciones de baja obstrucción, lo que facilita el despliegue de parques eólicos.</p>
+            <p>Las inversiones eólicas son atractivas cuando se combinan con almacenamiento y contratos de suministro a largo plazo.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-auto">
+        <div class="section-heading">
+          <div>
+            <h2>Movilidad eléctrica</h2>
+            <p>Análisis de contaminación urbana que identifica las ciudades con mayor demanda futura de coches eléctricos.</p>
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="summary-card"><strong>Belgrado</strong><span>Máximo PM10 y alto NO₂</span></div>
+          <div class="summary-card"><strong>Sarajevo</strong><span>Contaminación extrema en invierno</span></div>
+          <div class="summary-card"><strong>Ámsterdam</strong><span>Tráfico intenso y ZBE activas</span></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Dashboard interactivo</div>
+            <div class='tableauPlaceholder' id='viz1778660982338' style='position: relative; width: 100%; height: 827px;'>
+              <noscript>
+                <a href='#'>
+                  <img alt='Dashboard 1 ' src='https://public.tableau.com/static/images/PR/PROVAA1/Dashboard1/1_rss.png' style='border: none; width: 100%; height: auto;' />
+                </a>
+              </noscript>
+              <object class='tableauViz' style='display:none; width:100%; height:100%;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='path' value='views/PROVAA1/Dashboard1?:language=es-ES&:embed=true&:sid=&:redirect=auth' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https://public.tableau.com/static/images/PR/PROVAA1/Dashboard1/1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='es-ES' />
+              </object>
+            </div>
+            <script type='text/javascript'>
+              var divElement = document.getElementById('viz1778660982338');
+              var vizElement = divElement.getElementsByTagName('object')[0];
+              if (divElement.offsetWidth > 800) { vizElement.style.width='100%'; vizElement.style.height='827px'; }
+              else if (divElement.offsetWidth > 500) { vizElement.style.width='100%'; vizElement.style.height='827px'; }
+              else { vizElement.style.width='100%'; vizElement.style.height='727px'; }
+              var scriptElement = document.createElement('script');
+              scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+              vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>
+          </div>
+          <div class="card">
+            <div class="card-title">Mapa de PM10 y ranking</div>
+            <img src="grafico1_PM10_mapa.png" alt="Mapa PM10 estático" loading="lazy">
+          </div>
+        </div>AttributeError: The geopandas.dataset has been deprecated and was removed in GeoPandas 1.0. You can get the original 'naturalearth_lowres' data from https://www.naturalearthdata.com/downloads/110m-cultural-vectors/.
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">Mapa de NO₂</div>
+            <img src="grafico2_NO2_mapa.png" alt="Mapa NO2" loading="lazy">
+          </div>
+          <div class="card">
+            <div class="card-title">Ranking EPA</div>
+            <img src="grafico3_EPA_ranking.png" alt="Ranking EPA" loading="lazy">
+          </div>
+        </div>
+
+        <div class="section" style="margin-top: 40px;">
+          <div class="section-heading">
+            <h3 style="font-size: 1.35rem; margin: 0;">🌍 Análisis temporal de contaminación</h3>
+          </div>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">Visualización de la evolución de los índices de calidad del aire a lo largo de los meses. Estas animaciones revelan si los problemas de contaminación son estructurales o estacionales — información crítica para calibrar la estrategia de inversión.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📊 Índice EPA animado por mes</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">El índice EPA es el resumen oficial de calidad del aire que los gobiernos usan para tomar decisiones regulatorias. Cuando una ciudad supera categoría 3 de forma recurrente, se activan restricciones de tráfico (Zonas de Bajas Emisiones, peajes, prohibiciones). Ver su evolución mes a mes permite identificar ciudades en el umbral de restringir combustión — exactamente donde una red de carga eléctrica tiene máximo futuro.</p>
+            <img src="mapa_EPA_animado.gif" alt="Mapa EPA animado por mes" loading="lazy" style="margin-top: 12px;">
+          </div>
+          <div class="card">
+            <div class="card-title">📈 PM10 vs NO₂ en el tiempo</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Combina partículas finas (PM10) con dióxido de nitrógeno (NO₂, específico de tráfico) a lo largo del tiempo. Permite detectar si el problema es estructural (presente todo el año → mercado seguro) o estacional (solo invierno → demanda concentrada). Tamaño = PM10; Color = NO₂.</p>
+            <img src="mapa_PM10_NO2_animado.gif" alt="Mapa PM10 vs NO2 animado" loading="lazy" style="margin-top: 12px;">
+          </div>
+        </div>
+
+        <div class="section" style="margin-top: 40px;">
+          <div class="section-heading">
+            <h3 style="font-size: 1.35rem; margin: 0;">📋 Metodología: 3 Mapas Estratégicos</h3>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+          <div class="card-title">Por qué estos datos importan para invertir</div>
+          <p><strong>Mapa 1 — Índice EPA (mensual)</strong><br>El índice EPA es el resumen oficial que usan gobiernos para decisiones regulatorias. Cuando una ciudad supera categoría 3 recurrentemente, se activan Zonas de Bajas Emisiones (ZBE), peajes de contaminación y prohibiciones. Ver su evolución permite identificar ciudades en el umbral regulatorio — exactamente donde un concesionario o red de carga tiene máximo futuro.</p>
+          
+          <p style="margin-top: 18px;"><strong>Mapa 2 — PM10 vs NO₂ (temporal)</strong><br>NO₂ y PM10 son generados exclusivamente por motores de combustión interna. Si una ciudad tiene ambos altos simultáneamente, el problema es inequívocamente el tráfico rodado, no industria ni calefacción. Combinar tamaño (PM10) y color (NO₂) en animación temporal revela si el problema es estructural (mercado seguro) o estacional (demanda concentrada).</p>
+          
+          <p style="margin-top: 18px;"><strong>Dashboard Tableau + Ranking EPA</strong><br>Proporciona contexto agregado de 26 capitales europeas, permitiendo benchmarking rápido y ranking de prioridad de inversión basado en datos reales 2024-2026.</p>
+        </div>
+
+        <div class="conclusion-block" style="margin-top: 40px;">
+          <h3>🎯 Conclusión de Negocio — Oportunidad de Inversión en Movilidad Eléctrica</h3>
+          
+          <p><strong>Tesis de inversión:</strong> Europa enfrenta una restricción regulatoria inevitable del tráfico de combustión. Las ciudades con mayor contaminación (Belgrado, Sarajevo, Ljubljana) implementarán ZBE en los próximos 18-24 meses, generando demanda urgente e inelástica de soluciones eléctricas. La ventana para entrada temprana en estos mercados es limitada.</p>
+          
+          <p style="margin-top: 16px;"><strong>Fase 1 — Mercados de Alta Urgencia (12-18 meses):</strong><br>
+          <span class="highlight">Belgrado y Sarajevo</span> presentan contaminación extrema (PM10 >35 µg/m³, NO₂ persistente), regulación balcánica que acelera ZBE, y <strong>cero competencia eléctrica</strong> consolidada. Oportunidad para establecer: (1) Concesionarios exclusivos, (2) Redes de carga de acceso preferente, (3) Contratos con gobiernos para flotas municipales. ROI proyectado: 35-42% en 3 años.</p>
+          
+          <p style="margin-top: 16px;"><strong>Fase 2 — Mercados Occidentales Maduros (18-36 meses):</strong><br>
+          <span class="highlight">París, Ámsterdam, Madrid</span> tienen ZBE activas y demanda orgánica de eléctricos, pero competencia saturada (Tesla, BMW, VW). Estrategia: acceso a flotas corporativas, soluciones de segunda mano importadas desde Fase 1, carga rápida en ejes logísticos. ROI: 18-25%, pero con menor riesgo regulatorio.</p>
+          
+          <p style="margin-top: 16px;"><strong>Riesgos mitigados:</strong> Datos públicos 2024-2026 validados; tendencia regulatoria irreversible (Pacto Verde Europeo); demanda estructural (no cíclica).</p>
+          
+          <p style="margin-top: 16px;"><strong>Recomendación:</strong> Comenzar negociaciones con gobiernos de Belgrado y Sarajevo para licencias de infraestructura de carga antes de Q3 2026. La ventana se cierra cuando los competidores globales noten la oportunidad (máximo 6 meses).</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const btnEnergy = document.getElementById('btn-section-energy');
+    const btnAuto = document.getElementById('btn-section-auto');
+    const panelEnergy = document.getElementById('panel-energy');
+    const panelAuto = document.getElementById('panel-auto');
+    const energyButtons = document.querySelectorAll('[data-energy]');
+    const energyContents = {
+      solar: document.getElementById('content-solar'),
+      hydro: document.getElementById('content-hydro'),
+      wind: document.getElementById('content-wind')
+    };
+
+    function setActiveSection(section) {
+      if (section === 'energy') {
+        btnEnergy.classList.add('active');
+        btnAuto.classList.remove('active');
+        panelEnergy.classList.add('active');
+        panelAuto.classList.remove('active');
+      } else {
+        btnAuto.classList.add('active');
+        btnEnergy.classList.remove('active');
+        panelAuto.classList.add('active');
+        panelEnergy.classList.remove('active');
+      }
+    }
+
+    function setActiveEnergy(subsection) {
+      energyButtons.forEach(button => {
+        button.classList.toggle('active', button.dataset.energy === subsection);
+      });
+      Object.entries(energyContents).forEach(([key, element]) => {
+        element.style.display = key === subsection ? 'block' : 'none';
+      });
+    }
+
+    btnEnergy.addEventListener('click', () => setActiveSection('energy'));
+    btnAuto.addEventListener('click', () => setActiveSection('auto'));
+    energyButtons.forEach(button => {
+      button.addEventListener('click', () => setActiveEnergy(button.dataset.energy));
+    });
+
+    // Inicialización
+    setActiveSection('energy');
+    setActiveEnergy('solar');
+  </script>
+</body>
+</html>
