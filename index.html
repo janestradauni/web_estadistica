@@ -543,6 +543,12 @@
       text-align: center;
     }
 
+    .tableauPlaceholder,
+    .tableauPlaceholder object,
+    .tableauPlaceholder iframe {
+      display: block;
+    }
+
     /* FOOTER */
     footer {
       margin-top: 80px;
@@ -916,10 +922,12 @@
     btnE.addEventListener('click', () => {
       btnE.classList.add('active'); btnA.classList.remove('active');
       pE.classList.add('active'); pA.classList.remove('active');
+      refreshVisibleTableaus(pE);
     });
     btnA.addEventListener('click', () => {
       btnA.classList.add('active'); btnE.classList.remove('active');
       pA.classList.add('active'); pE.classList.remove('active');
+      refreshVisibleTableaus(pA);
     });
 
     // Sub-toggles energy
@@ -928,8 +936,28 @@
         document.querySelectorAll('[data-sub]').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         document.querySelectorAll('.energy-content').forEach(c => c.classList.remove('active'));
-        document.getElementById('sub-' + btn.dataset.sub).classList.add('active');
+        const activeSub = document.getElementById('sub-' + btn.dataset.sub);
+        activeSub.classList.add('active');
+        refreshVisibleTableaus(activeSub);
       });
+    });
+
+    function refreshVisibleTableaus(scope) {
+      if (!scope) return;
+      scope.querySelectorAll('.tableauPlaceholder').forEach((placeholder) => {
+        const viz = placeholder.querySelector('object, iframe');
+        if (!viz) return;
+        const width = placeholder.offsetWidth || scope.offsetWidth || window.innerWidth;
+        const height = width > 800 ? 827 : width > 500 ? 680 : 560;
+        viz.style.width = '100%';
+        viz.style.maxWidth = '100%';
+        viz.style.height = height + 'px';
+      });
+      window.dispatchEvent(new Event('resize'));
+    }
+
+    window.addEventListener('load', () => {
+      refreshVisibleTableaus(document.getElementById('panel-energy'));
     });
 
     // Show tel in topbar on scroll
