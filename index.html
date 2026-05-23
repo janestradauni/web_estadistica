@@ -443,6 +443,17 @@
       letter-spacing: 0.09em;
     }
     .card img { width: 100%; height: auto; border-radius: 14px; display: block; margin: 10px auto 0; }
+    .tableauPlaceholder {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .tableauPlaceholder object,
+    .tableauPlaceholder iframe,
+    .tableauViz {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
@@ -745,7 +756,7 @@
             <p>El dashboard completa la animación mensual y permite contrastar de forma interactiva el índice UV con la nube y otras variables, para no quedarse solo con una lectura visual simple.</p>
           </div>
           <div class='tableauPlaceholder' id='viz1779571705371' style='position: relative'><noscript><a href='#'><img alt='solar ' src='https://public.tableau.com/static/images/so/solaruv_indexxclouds/Dashboard1/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /> <param name='name' value='solaruv_indexxclouds/Dashboard1' /> <param name='tabs' value='no' /> <param name='toolbar' value='yes' /> <param name='static_image' value='https://public.tableau.com/static/images/so/solaruv_indexxclouds/Dashboard1/1.png' /> <param name='animate_transition' value='yes' /> <param name='display_static_image' value='yes' /> <param name='display_spinner' value='yes' /> <param name='display_overlay' value='yes' /> <param name='display_count' value='yes' /> <param name='language' value='es-ES' /></object></div>
-          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779571705371');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779571705371');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height='680px';} else { vizElement.style.width='100%';vizElement.style.height='560px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
           <div class="graph-analysis">
             <h4>Resultados e interpretación</h4>
             <p>La visualización interactiva confirma el mismo patrón general: cuanto más al sur y más despejado es el entorno, mayor es la oportunidad de capturar rendimiento fotovoltaico de forma continua.</p>
@@ -776,7 +787,7 @@
           </div>
           
           <div class='tableauPlaceholder' id='viz1779572502620' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https://public.tableau.com/static/images/NN/NNPF8QRPM/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared/NNPF8QRPM' /> <param name='toolbar' value='yes' /><param name='static_image' value='https://public.tableau.com/static/images/NN/NNPF8QRPM/1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>
-          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779572502620');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779572502620');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height='680px';} else { vizElement.style.width='100%';vizElement.style.height='560px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
           <div class="graph-analysis">
             <h4>Resultados e interpretación</h4>
             
@@ -834,12 +845,12 @@
             <param name='language' value='es-ES'/>
           </object>
         </div>
-        <script type='text/javascript'>
+          <script type='text/javascript'>
           var d2=document.getElementById('viz1778660982338');
           var o2=d2.getElementsByTagName('object')[0];
           if(d2.offsetWidth>800){o2.style.width='100%';o2.style.height='827px';}
-          else if(d2.offsetWidth>500){o2.style.width='100%';o2.style.height='827px';}
-          else{o2.style.width='100%';o2.style.height='727px';}
+          else if(d2.offsetWidth>500){o2.style.width='100%';o2.style.height='680px';}
+          else{o2.style.width='100%';o2.style.height='560px';}
           var s2=document.createElement('script');
           s2.src='https://public.tableau.com/javascripts/api/viz_v1.js';
           o2.parentNode.insertBefore(s2,o2);
