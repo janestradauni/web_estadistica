@@ -3,299 +3,928 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EuroInvest Advisor — Asesoría de Inversión</title>
+  <title>EnergyInvest — Asesoría de Inversión Energética</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --background: #0b1220;
-      --surface: #131b33;
-      --surface-soft: #192241;
-      --border: rgba(255,255,255,0.08);
-      --text: #e8edf7;
-      --text-muted: #8b98b8;
-      --accent: #4f86ff;
-      --accent-strong: #1cd8d2;
-      --highlight: #f5b765;
-      --shadow: 0 24px 70px rgba(0,0,0,0.25);
+      --bg: #07090f;
+      --surface: #0e1322;
+      --surface2: #131b2e;
+      --border: rgba(255,255,255,0.07);
+      --text: #eef1f9;
+      --muted: #7a8aaa;
+      --accent: #e8a830;
+      --accent2: #3d8fff;
+      --red: #e85858;
+      --green: #3dcc8f;
+      --glow: rgba(232,168,48,0.12);
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: radial-gradient(circle at top, rgba(79,134,255,0.14), transparent 38%), linear-gradient(180deg, #0b1220 0%, #080d18 100%); color: var(--text); }
-    a { color: inherit; text-decoration: none; }
-    .page { max-width: 1200px; margin: 0 auto; padding: 28px 24px 48px; }
-    .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; background: rgba(19,27,51,0.95); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .brand-mark { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #fff; font-size: 1.15rem; font-weight: 700; }
-    .brand-title { display: flex; flex-direction: column; line-height: 1.1; }
-    .brand-title strong { font-size: 1.2rem; letter-spacing: -0.02em; }
-    .brand-title span { color: var(--text-muted); font-size: 0.95rem; }
-    .topbar-note { color: var(--text-muted); font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.08); padding: 10px 14px; border-radius: 999px; }
-    .hero { margin: 32px 0 42px; padding: 38px 34px; background: rgba(19,27,51,0.9); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
-    .hero::after { content: ""; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; background: rgba(79,134,255,0.14); border-radius: 50%; }
-    .hero-title { font-size: clamp(2rem, 3.2vw, 3.6rem); line-height: 1.03; margin-bottom: 18px; }
-    .hero-copy { max-width: 780px; color: var(--text-muted); line-height: 1.75; font-size: 1rem; margin-bottom: 28px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    /* ─── TOPBAR ─── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(7,9,15,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .topbar-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #f5c842);
+      display: grid;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: #07090f;
+    }
+    .logo-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    .logo-text span {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .topbar-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .btn {
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 9px 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent), #f5c842);
+      color: #07090f;
+    }
+    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(232,168,48,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.22); }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 90px 0 70px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero .wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(232,168,48,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(61,143,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,168,48,0.1);
+      border: 1px solid rgba(232,168,48,0.2);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-label::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-copy {
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
     .hero-copy strong { color: var(--text); }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .button { cursor: pointer; border: 1px solid transparent; border-radius: 999px; padding: 12px 22px; font-size: 0.95rem; font-weight: 600; transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
-    .button:hover { transform: translateY(-1px); }
-    .button-primary { background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #fff; box-shadow: 0 14px 32px rgba(39,112,255,0.28); }
-    .button-secondary { background: rgba(255,255,255,0.04); color: var(--text); border-color: var(--border); }
-    .button-ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,0.12); }
-    .controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 24px; }
-    .controls .button.active { background: #0f5bfb; border-color: var(--accent); }
-    .panel { display: none; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
-    .panel.active { display: block; opacity: 1; transform: translateY(0); }
-    .section { margin-top: 30px; }
-    .section-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
-    .section-heading h2 { font-size: 1.55rem; font-weight: 700; margin: 0; }
-    .section-heading p { margin: 0; color: var(--text-muted); max-width: 680px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-    .card { background: rgba(19,27,51,0.9); border: 1px solid var(--border); border-radius: 22px; padding: 24px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.01); }
-    .card-title { font-size: 0.88rem; font-weight: 700; color: var(--accent); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .card img { width: 100%; height: auto; border-radius: 16px; display: block; margin-top: 12px; }
-    .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
-    .summary-card { border-radius: 18px; border: 1px solid var(--border); padding: 20px; background: rgba(255,255,255,0.03); }
-    .summary-card strong { display: block; font-size: 1.3rem; margin-bottom: 6px; }
-    .summary-card span { color: var(--text-muted); font-size: 0.88rem; }
-    .conclusion-block { background: rgba(79,134,255,0.08); border: 1px solid rgba(79,134,255,0.14); border-radius: 24px; padding: 28px; margin-top: 30px; }
-    .conclusion-block h3 { margin: 0 0 14px; font-size: 1.35rem; }
-    .conclusion-block p { margin: 0 0 12px; color: var(--text-muted); line-height: 1.75; }
-    .conclusion-block .highlight { color: var(--accent-strong); font-weight: 600; }
-    .quote-line { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; color: var(--text-muted); font-size: 0.9rem; }
-    @media (max-width: 1024px) { .grid-2, .grid-3, .summary { grid-template-columns: 1fr; } }
-    @media (max-width: 720px) { .hero { padding: 28px 20px; } .topbar { flex-direction: column; align-items: flex-start; } }
+
+    /* ─── CRISIS BANNER ─── */
+    .crisis {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin: 48px 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .crisis-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .crisis h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+    .crisis-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .tag {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .tag-red { background: rgba(232,88,88,0.12); border: 1px solid rgba(232,88,88,0.25); color: #f08080; }
+    .tag-gold { background: rgba(232,168,48,0.12); border: 1px solid rgba(232,168,48,0.25); color: var(--accent); }
+    .tag-blue { background: rgba(61,143,255,0.1); border: 1px solid rgba(61,143,255,0.2); color: #7ab4ff; }
+    .crisis p { color: var(--muted); line-height: 1.75; font-size: 0.97rem; }
+    .crisis p strong { color: var(--text); }
+
+    /* ─── WHY NOW ─── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 48px 0;
+    }
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .why-card:hover { border-color: rgba(232,168,48,0.2); transform: translateY(-2px); }
+    .why-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      opacity: 0.5;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .why-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .why-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 56px 0;
+    }
+
+    /* ─── TEAM ─── */
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+    .team-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 170px;
+    }
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--surface2), var(--surface));
+      border: 2px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+      overflow: hidden;
+    }
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.08), transparent 60%);
+    }
+    .team-card:hover .avatar {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(232,168,48,0.18);
+    }
+    .team-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .team-role {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .team-contact {
+      font-size: 0.75rem;
+      color: var(--accent);
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    /* ─── CONTACT CTA ─── */
+    .cta-block {
+      background: linear-gradient(135deg, rgba(232,168,48,0.08), rgba(61,143,255,0.05));
+      border: 1px solid rgba(232,168,48,0.15);
+      border-radius: 24px;
+      padding: 44px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+      margin: 56px 0;
+    }
+    .cta-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .cta-block p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; max-width: 480px; }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .contact-item strong { color: var(--text); }
+    .contact-icon { font-size: 1rem; }
+
+    /* ─── DASHBOARD AREA ─── */
+    .dash-intro {
+      margin: 56px 0 32px;
+    }
+    .panel-toggles {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .toggle-btn {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      background: transparent;
+      color: var(--muted);
+      transition: all 0.2s ease;
+    }
+    .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+    .toggle-btn.active {
+      background: rgba(232,168,48,0.12);
+      border-color: rgba(232,168,48,0.3);
+      color: var(--accent);
+    }
+
+    /* original dashboard styles adapted */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+      text-align: center;
+    }
+    .card-title {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+    .card img { width: 100%; height: auto; border-radius: 14px; display: block; margin: 10px auto 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+    .summary-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 18px;
+      background: rgba(255,255,255,0.02);
+      text-align: center;
+    }
+    .summary-card strong { display: block; font-size: 1.2rem; margin-bottom: 4px; }
+    .summary-card span { color: var(--muted); font-size: 0.82rem; }
+    .graph-analysis {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 14px 0;
+    }
+    .graph-analysis h4 {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .graph-analysis p {
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 0.93rem;
+      text-align: justify;
+    }
+    .conclusion-block {
+      background: rgba(61,143,255,0.06);
+      border: 1px solid rgba(61,143,255,0.12);
+      border-radius: 20px;
+      padding: 26px;
+      margin-top: 26px;
+    }
+    .conclusion-block h3 { margin-bottom: 12px; font-size: 1.2rem; text-align: center; }
+    .conclusion-block p { color: var(--muted); line-height: 1.75; margin-bottom: 10px; font-size: 0.95rem; text-align: justify; }
+    .highlight { color: #3dcc8f; font-weight: 600; }
+
+    .panel-section { display: none; }
+    .panel-section.active { display: block; }
+
+    .sub-toggles {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .sub-btn {
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .sub-btn.active {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.18);
+      color: var(--text);
+    }
+    .sub-btn:hover { border-color: rgba(255,255,255,0.16); color: var(--text); }
+
+    .energy-content { display: none; }
+    .energy-content.active { display: block; }
+
+    #panel-auto {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    #panel-auto .card {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card.no2-compact {
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 80px;
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer strong { color: var(--text); }
+
+    @media (max-width: 900px) {
+      .why-grid, .grid-2, .grid-3, .summary-row { grid-template-columns: 1fr; }
+      .cta-block { grid-template-columns: 1fr; }
+      .contact-info { align-items: flex-start; }
+      .crisis { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2.4rem; }
+      .team-grid { gap: 14px; }
+      .team-card { width: 130px; }
+      .avatar { width: 72px; height: 72px; font-size: 1.1rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">EI</div>
-        <div class="brand-title"><strong>EuroInvest Advisor</strong><span>Consultoría estratégica de inversión</span></div>
-      </div>
-      <div class="topbar-note">Análisis con datos de <strong>data_clean3.csv</strong> · 26 capitales · 2024‑2026</div>
-    </header>
 
-    <section class="hero">
-      <div class="hero-title">Recomendaciones de inversión basadas en datos reales.</div>
-      <p class="hero-copy">Explora los sectores de <strong>energía</strong> y <strong>movilidad eléctrica</strong> con un informe visual y directo. Selecciona tu área de interés para ver los gráficos locales y las conclusiones estratégicas.</p>
-      <div class="controls" style="justify-content:center;">
-        <button class="button button-primary active" id="btn-section-energy">Energía</button>
-        <button class="button button-secondary" id="btn-section-auto">Automóviles</button>
+  <!-- TOPBAR -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">
+        <div class="logo-mark">EI</div>
+        <div class="logo-text">
+          <strong>EnergyInvest</strong>
+          <span>Asesoría estratégica de inversión</span>
+        </div>
       </div>
-    </section>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-size:0.82rem; color:var(--muted); display:none;" id="topbar-tel">📞 +34 93 512 8800</span>
+        <a href="#contacto" class="btn btn-gold">Agendar reunión</a>
+      </div>
+    </div>
+  </nav>
 
-    <main>
-      <section class="panel active" id="panel-energy">
-        <div class="section-heading">
-          <div>
-            <h2>Energía renovable</h2>
-            <p>Selecciona el subsector para ver el gráfico asociado y las recomendaciones de inversión.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <div class="hero-label">Independencia energética europea · 2025</div>
+      <h1>La energía del futuro<br>se construye <em>hoy</em><br>en Europa</h1>
+      <p class="hero-copy">
+        Los bloques de producción global están cambiando. <strong>El petróleo de Venezuela y el Golfo Pérsico ya no son garantía.</strong> Europa necesita dejar de depender del exterior — y las decisiones de inversión que se tomen en los próximos meses definirán quién lidera esa transición.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-gold">Hablar con nuestro equipo</a>
+        <a href="#analisis" class="btn btn-outline">Ver análisis de datos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRISIS BANNER -->
+  <div class="wrap">
+    <div class="crisis">
+      <div>
+        <h2>El suministro global está bloqueado</h2>
+        <p>
+          Con <strong>Estados Unidos marcando el rumbo en Venezuela y en el Golfo Pérsico (los grandes sitios en el mundo de exportación de Petróleo (energía)</strong>, y con un escenario internacional en el que esas alianzas entre Europa y los EEUU ya no ofrecen la estabilidad que Europa esperaba, la dependencia energética vuelve a quedar en primer plano. Las importaciones tradicionales ya no son suficientes ni seguras. La Unión Europea ha acelerado su hoja de ruta hacia la autonomía energética — y esto genera una ventana de inversión única para quienes actúen con información y criterio.
+        </p>
+        <p style="margin-top:12px;">
+          <strong>EnergyInvest</strong> existe para que esa inversión se haga bien: en el lugar correcto, en el momento adecuado, con los datos que respaldan cada decisión.
+        </p>
+        <div class="crisis-tags">
+          <span class="tag tag-red">Petróleo venezolano bloqueado</span>
+          <span class="tag tag-red">Petróleo del Golfo Pérsico restringido</span>
+          <span class="tag tag-gold">Europa busca autosuficiencia</span>
+          <span class="tag tag-blue">Ventana de inversión abierta</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY GRID -->
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>Contexto geopolítico inédito</h3>
+        <p>Los principales bloques productores de crudo están intervenidos o bloqueados. Europa no puede esperar para desarrollar sus propias fuentes de energía.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>Regulación que empuja</h3>
+        <p>El Pacto Verde Europeo, las ZBE y los objetivos climáticos crean una demanda estructural e inevitable de energías limpias en toda la UE.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Datos, no intuición</h3>
+        <p>Nuestras recomendaciones se basan en 26 capitales europeas, datos reales 2024–2026, y análisis multidominio. Invertir bien requiere saber exactamente dónde.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- TEAM -->
+    <div id="equipo">
+      <div class="section-eyebrow">El equipo</div>
+      <h2 class="section-title">Cinco personas.<br>Una sola misión.</h2>
+      <p class="section-sub">Somos un equipo especializado en análisis de datos energéticos y estrategia de inversión. Combinamos experiencia en mercados europeos, modelado de datos y consultoría para ayudarte a tomar las mejores decisiones.</p>
+
+      <div class="team-grid">
+        <!-- Carlos -->
+        <div class="team-card">
+          <div class="avatar">C</div>
+          <div class="team-name">Carlos</div>
+          <div class="team-role">Director de Estrategia</div>
+          <div class="team-contact">carlos@energyinvest.eu</div>
+        </div>
+        <!-- Pol -->
+        <div class="team-card">
+          <div class="avatar">P</div>
+           <div class="team-name">Pol</div>
+           <div class="team-role">Analista de Mercados</div>
+           <div class="team-contact">pol@energyinvest.eu</div>
+        </div>
+        <!-- Jan -->
+        <div class="team-card">
+          <div class="avatar"><img class="avatar-img" src="fotos_cares/jan.jpeg" alt="Jan"></div>
+          <div class="team-name">Jan</div>
+          <div class="team-role">Data Scientist</div>
+          <div class="team-contact">jan@energyinvest.eu</div>
+        </div>
+        <!-- Guillem -->
+        <div class="team-card">
+          <div class="avatar">G</div>
+          <div class="team-name">Guillem</div>
+          <div class="team-role">Relaciones con Inversores</div>
+          <div class="team-contact">guillem@energyinvest.eu</div>
+        </div>
+        <!-- Raúl -->
+        <div class="team-card">
+          <div class="avatar">R</div>
+          <div class="team-name">Raúl</div>
+          <div class="team-role">Consultor Regulatorio</div>
+          <div class="team-contact">raul@energyinvest.eu</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CONTACT CTA -->
+    <div class="cta-block" id="contacto">
+      <div>
+        <h2>¿Tienes una oportunidad en mente?<br>Hablemos.</h2>
+        <p>Nuestro equipo está disponible para agendar una reunión personalizada y analizar contigo dónde y cómo invertir en el nuevo mapa energético europeo. Sin compromisos, con datos reales.</p>
+        <a href="mailto:hola@energyinvest.eu" class="btn btn-gold" style="display:inline-block; margin-top:20px;">Solicitar reunión →</a>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <span><strong>+34 93 512 8800</strong></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <span><strong>hola@energyinvest.eu</strong></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <span>Barcelona, España</span>
+        </div>
+        <div class="contact-item" style="margin-top:6px; font-size:0.82rem; color:var(--muted);">
+          Agendamos reunión en nuestra agenda online — respondemos en menos de 24h.
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ANALYSIS PANELS -->
+    <div id="analisis" class="dash-intro">
+      <div class="section-eyebrow">Análisis de datos</div>
+      <h2 class="section-title">26 capitales.<br>Datos reales 2024–2026.</h2>
+      <p class="section-sub">Explora los sectores de energía renovable y movilidad eléctrica. Cada sección incluye visualizaciones y conclusiones estratégicas basadas en datos reales.</p>
+      <div class="panel-toggles">
+        <button class="toggle-btn active" id="btn-energy">⚡ Energía renovable</button>
+        <button class="toggle-btn" id="btn-auto">🚗 Movilidad eléctrica</button>
+      </div>
+    </div>
+
+    <!-- ENERGY PANEL -->
+    <div class="panel-section active" id="panel-energy">
+      <div class="sub-toggles">
+        <button class="sub-btn active" data-sub="solar">☀️ Solar</button>
+        <button class="sub-btn" data-sub="hydro">💧 Hidráulica</button>
+        <button class="sub-btn" data-sub="wind">🌬 Eólica</button>
+      </div>
+
+      <div class="energy-content active" id="sub-solar">
+        <div class="card">
+          <div class="card-title">Potencial solar — Índice UV & Nubosidad</div>
+          <p style="color:var(--muted); font-size:0.92rem; line-height:1.7;">Evaluación basada en índice UV, condiciones de cielo y temperatura promedio. La animación mensual muestra dónde y cuándo la radiación solar es más intensa a lo largo del año.</p>
+          <div class="graph-analysis">
+            <h4>Por qué se hizo</h4>
+            <p>Se utiliza para medir la disponibilidad solar real mediante el índice UV, que refleja la radiación ultravioleta incidente. El índice UV ayuda a estimar el potencial fotovoltaico efectivo a lo largo del año y a identificar meses con mayor exposición.</p>
           </div>
-        </div>
-
-        <div class="controls" style="justify-content:center; margin-bottom: 30px;">
-          <button class="button button-ghost active" data-energy="solar">Solar</button>
-          <button class="button button-ghost" data-energy="hydro">Hidráulica</button>
-          <button class="button button-ghost" data-energy="wind">Eólica</button>
-        </div>
-
-        <div class="card" id="content-solar">
-          <div class="card-title">Potencial solar</div>
-          <p>Evaluación basada en índice UV, condiciones de cielo y temperatura promedio. La animación mensual muestra dónde y cuándo la radiación solar es más intensa.</p>
           <img src="gràfics_fotos/solar/uv_index_animado.gif" alt="Mapa UV animado por mes" loading="lazy">
+          <div class="graph-analysis">
+            <h4>Resultados e interpretación</h4>
+            <p>Las ciudades del sur concentran más meses favorables y muestran una exposición más estable, mientras que las zonas del norte dependen más de ventanas estacionales. Eso hace más atractivos los mercados con sol constante y menos variabilidad.</p>
+          </div>
+          <div class="graph-analysis">
+            <h4>Por qué se hizo</h4>
+            <p>El dashboard completa la animación mensual y permite contrastar de forma interactiva el índice UV con la nube y otras variables, para no quedarse solo con una lectura visual simple.</p>
+          </div>
+          <div class='tableauPlaceholder' id='viz1779571705371' style='position: relative'><noscript><a href='#'><img alt='solar ' src='https://public.tableau.com/static/images/so/solaruv_indexxclouds/Dashboard1/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /> <param name='name' value='solaruv_indexxclouds/Dashboard1' /> <param name='tabs' value='no' /> <param name='toolbar' value='yes' /> <param name='static_image' value='https://public.tableau.com/static/images/so/solaruv_indexxclouds/Dashboard1/1.png' /> <param name='animate_transition' value='yes' /> <param name='display_static_image' value='yes' /> <param name='display_spinner' value='yes' /> <param name='display_overlay' value='yes' /> <param name='display_count' value='yes' /> <param name='language' value='es-ES' /></object></div>
+          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779571705371');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <div class="graph-analysis">
+            <h4>Resultados e interpretación</h4>
+            <p>La visualización interactiva confirma el mismo patrón general: cuanto más al sur y más despejado es el entorno, mayor es la oportunidad de capturar rendimiento fotovoltaico de forma continua.</p>
+          </div>
           <div class="conclusion-block">
-            <h3>Oportunidad principal</h3>
-            <p><span class="highlight">Madrid, Roma y Tirana</span> destacan por sus altas temperaturas y condiciones soleadas constantes, lo que favorece instalaciones fotovoltaicas de alto rendimiento.</p>
-            <p>Las capitales del sur de Europa muestran un <strong>retorno potencial más rápido</strong> en comparación con las regiones nórdicas, donde la producción es más estacional.</p>
+            <h3>Conclusión general</h3>
+            <p>A partir de todos los gráficos, la energía solar se concentra en las ciudades del sur de Europa, donde la radiación es más estable, la nubosidad penaliza menos y el retorno potencial es más rápido que en las zonas nórdicas.</p>
           </div>
         </div>
+      </div>
 
-        <div class="card" id="content-hydro" style="display:none; margin-top:30px;">
-          <div class="card-title">Potencial hidráulico</div>
-          <p>Estimación basada en humedad, lluvia y condiciones meteorológicas persistentes. La animación mensual ayuda a ver qué ciudades concentran más lluvia y en qué momentos del año.</p>
+      <div class="energy-content" id="sub-hydro">
+        <div class="card">
+          <div class="card-title">Potencial hidráulico — Lluvia & Humedad</div>
+          <p style="color:var(--muted); font-size:0.92rem; line-height:1.7;">Estimación basada en humedad, lluvia y condiciones meteorológicas persistentes. La animación mensual muestra qué ciudades concentran más lluvia y en qué momentos del año.</p>
+          <div class="graph-analysis">
+            <h4>Por qué se hizo</h4>
+            <p>Se analiza para estimar la disponibilidad de recurso hídrico y detectar qué zonas tienen una base más sólida para una producción hidráulica continua durante el año.</p>
+          </div>
           <img src="gràfics_fotos/hidràulica/rain_animado.gif" alt="Mapa de lluvia animado por mes" loading="lazy">
+          <div class="graph-analysis">
+            <h4>Resultados e interpretación</h4>
+            <p>Las ciudades del noroeste y del entorno atlántico presentan más lluvia y una mayor regularidad, mientras que las regiones más secas muestran una ventaja mucho menor para este tipo de inversión.</p>
+          </div>
+          <div class="graph-analysis">
+            <h4>Por qué se hizo</h4>
+            <p>Se usa la presión atmosférica como referencia porque está relacionada con las precipitaciones: la alta presión suele asociarse a tiempo estable y la baja presión a nubes y lluvia.</p>
+          </div>
+          
+          <div class='tableauPlaceholder' id='viz1779572502620' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https://public.tableau.com/static/images/NN/NNPF8QRPM/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared/NNPF8QRPM' /> <param name='toolbar' value='yes' /><param name='static_image' value='https://public.tableau.com/static/images/NN/NNPF8QRPM/1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>
+          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779572502620');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <div class="graph-analysis">
+            <h4>Resultados e interpretación</h4>
+            <p>La lectura interactiva refuerza la misma idea: donde el volumen de lluvia y la humedad se mantienen mejor, la hidráulica es más predecible y el activo gana sentido a largo plazo.</p>
+            <p>No obstante, en este gráfico no se distinguen diferencias significativas: los patrones son muy constantes entre las ciudades y apenas se aprecian variaciones.</p>
+          </div>
           <div class="conclusion-block">
-            <h3>Oportunidad principal</h3>
-            <p><span class="highlight">Oslo, Londres y Zúrich</span> tienen condiciones favorables para proyectos hidráulicos, con episodios frecuentes de lluvia y recursos de agua estable.</p>
-            <p>La energía hidráulica es especialmente atractiva para inversiones de mediano/largo plazo en regiones con redes de agua bien desarrolladas.</p>
+            <h3>Conclusión general</h3>
+            <p>A partir de todos los gráficos, la hidráulica tiene más sentido en ciudades y áreas con lluvia recurrente, humedad estable y menor estacionalidad, porque eso sostiene mejor la generación y reduce el riesgo operativo.</p>
           </div>
         </div>
+      </div>
 
-        <div class="card" id="content-wind" style="display:none; margin-top:30px;">
-          <div class="card-title">Potencial eólico</div>
-          <p>Evaluación sobre vientos sostenidos, estabilidad climática y zonas de baja densidad urbana. El GIF mensual muestra los cambios de velocidad del viento a lo largo del año.</p>
-          <img src="gràfics_fotos/eòlica/wind_kph_animado.gif" alt="Mapa de velocidad del viento animado por mes" loading="lazy">
+      <div class="energy-content" id="sub-wind">
+        <div class="card">
+          <div class="card-title">Potencial eólico — Velocidad del viento</div>
+          <p style="color:var(--muted); font-size:0.92rem; line-height:1.7;">Evaluación sobre vientos sostenidos, estabilidad climática y zonas de baja densidad urbana. El GIF mensual muestra los cambios de velocidad del viento a lo largo del año.</p>
+          <div class="graph-analysis">
+            <h4>Por qué se hizo</h4>
+            <p>Se necesita para medir la intensidad del recurso eólico, pero también conviene estudiar la dirección del viento. De momento solo tenemos datos por ciudades, aunque para este caso tendría más sentido analizar zonas concretas, porque los rangos son muy grandes y una ciudad puede ocultar variaciones locales importantes.</p>
+          </div>
+          <img src="gràfics_fotos/eòlica/wind_kph_animado.gif" alt="Mapa de velocidad del viento animado" loading="lazy">
+          <div class="graph-analysis">
+            <h4>Resultados e interpretación</h4>
+            <p>Las zonas costeras, los corredores abiertos y las áreas con menor obstrucción urbana suelen mostrar patrones más sólidos. Por eso, para eólica, la lectura por ciudad sirve como primera aproximación, pero el análisis por zonas sería mucho más preciso.</p>
+          </div>
           <div class="conclusion-block">
-            <h3>Oportunidad principal</h3>
-            <p><span class="highlight">Copenhague, Ámsterdam y Berlín</span> muestran patrones de viento sólidos y condiciones de baja obstrucción, lo que facilita el despliegue de parques eólicos.</p>
-            <p>Las inversiones eólicas son atractivas cuando se combinan con almacenamiento y contratos de suministro a largo plazo.</p>
+            <h3>Conclusión general</h3>
+            <p>A partir de todos los gráficos, la eólica no debería interpretarse solo por ciudad, sino por zonas con topografía y exposición similares, porque ahí es donde la dirección y la velocidad del viento se vuelven realmente útiles para decidir inversiones.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section class="panel" id="panel-auto">
-        <div class="section-heading">
-          <div>
-            <h2>Movilidad eléctrica</h2>
-            <p>Análisis de contaminación urbana que identifica las ciudades con mayor demanda futura de coches eléctricos.</p>
-          </div>
+    <!-- AUTO PANEL -->
+    <div class="panel-section" id="panel-auto">
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">Dashboard interactivo CO2 y NO₂</div>
+        <div class="graph-analysis">
+          <h4>Por qué se hizo</h4>
+          <p>Este dashboard sirve para cruzar contaminantes directamente ligados al tráfico y comprobar de forma interactiva dónde la presión sobre movilidad y calidad del aire es mayor.</p>
         </div>
-
-        <div class="summary">
-          <div class="summary-card"><strong>Belgrado</strong><span>Máximo PM10 y alto NO₂</span></div>
-          <div class="summary-card"><strong>Sarajevo</strong><span>Contaminación extrema en invierno</span></div>
-          <div class="summary-card"><strong>Ámsterdam</strong><span>Tráfico intenso y ZBE activas</span></div>
+        <div class='tableauPlaceholder' id='viz1778660982338' style='position:relative;width:100%;height:827px;'>
+          <noscript><a href='#'><img alt='Dashboard 1' src='https://public.tableau.com/static/images/PR/PROVAA1/Dashboard1/1_rss.png' style='border:none;width:100%;height:auto;'/></a></noscript>
+          <object class='tableauViz' style='display:none;width:100%;height:100%;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+            <param name='embed_code_version' value='3'/>
+            <param name='path' value='views/PROVAA1/Dashboard1?:language=es-ES&:embed=true&:sid=&:redirect=auth'/>
+            <param name='toolbar' value='yes'/>
+            <param name='static_image' value='https://public.tableau.com/static/images/PR/PROVAA1/Dashboard1/1.png'/>
+            <param name='animate_transition' value='yes'/>
+            <param name='display_static_image' value='yes'/>
+            <param name='display_spinner' value='yes'/>
+            <param name='display_overlay' value='yes'/>
+            <param name='display_count' value='yes'/>
+            <param name='language' value='es-ES'/>
+          </object>
         </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title">Dashboard interactivo</div>
-            <div class='tableauPlaceholder' id='viz1778660982338' style='position: relative; width: 100%; height: 827px;'>
-              <noscript>
-                <a href='#'>
-                  <img alt='Dashboard 1 ' src='https://public.tableau.com/static/images/PR/PROVAA1/Dashboard1/1_rss.png' style='border: none; width: 100%; height: auto;' />
-                </a>
-              </noscript>
-              <object class='tableauViz' style='display:none; width:100%; height:100%;'>
-                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                <param name='embed_code_version' value='3' />
-                <param name='path' value='views/PROVAA1/Dashboard1?:language=es-ES&:embed=true&:sid=&:redirect=auth' />
-                <param name='toolbar' value='yes' />
-                <param name='static_image' value='https://public.tableau.com/static/images/PR/PROVAA1/Dashboard1/1.png' />
-                <param name='animate_transition' value='yes' />
-                <param name='display_static_image' value='yes' />
-                <param name='display_spinner' value='yes' />
-                <param name='display_overlay' value='yes' />
-                <param name='display_count' value='yes' />
-                <param name='language' value='es-ES' />
-              </object>
-            </div>
-            <script type='text/javascript'>
-              var divElement = document.getElementById('viz1778660982338');
-              var vizElement = divElement.getElementsByTagName('object')[0];
-              if (divElement.offsetWidth > 800) { vizElement.style.width='100%'; vizElement.style.height='827px'; }
-              else if (divElement.offsetWidth > 500) { vizElement.style.width='100%'; vizElement.style.height='827px'; }
-              else { vizElement.style.width='100%'; vizElement.style.height='727px'; }
-              var scriptElement = document.createElement('script');
-              scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-              vizElement.parentNode.insertBefore(scriptElement, vizElement);
-            </script>
-          </div>
-          <div class="card">
-            <div class="card-title">Mapa de PM10 y ranking</div>
-            <img src="grafico1_PM10_mapa.png" alt="Mapa PM10 estático" loading="lazy">
-          </div>
-        </div>AttributeError: The geopandas.dataset has been deprecated and was removed in GeoPandas 1.0. You can get the original 'naturalearth_lowres' data from https://www.naturalearthdata.com/downloads/110m-cultural-vectors/.
-
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title">Mapa de NO₂</div>
-            <img src="grafico2_NO2_mapa.png" alt="Mapa NO2" loading="lazy">
-          </div>
-          <div class="card">
-            <div class="card-title">Ranking EPA</div>
-            <img src="grafico3_EPA_ranking.png" alt="Ranking EPA" loading="lazy">
-          </div>
+        <script type='text/javascript'>
+          var d2=document.getElementById('viz1778660982338');
+          var o2=d2.getElementsByTagName('object')[0];
+          if(d2.offsetWidth>800){o2.style.width='100%';o2.style.height='827px';}
+          else if(d2.offsetWidth>500){o2.style.width='100%';o2.style.height='827px';}
+          else{o2.style.width='100%';o2.style.height='727px';}
+          var s2=document.createElement('script');
+          s2.src='https://public.tableau.com/javascripts/api/viz_v1.js';
+          o2.parentNode.insertBefore(s2,o2);
+        </script>
+        <div class="graph-analysis">
+          <h4>Resultados e interpretación</h4>
+          <p>Cuando CO2 y NO₂ aparecen altos a la vez, el problema de tráfico queda mejor identificado y la oportunidad para soluciones eléctricas o de baja emisión gana claridad.</p>
         </div>
+      </div>
 
-        <div class="section" style="margin-top: 40px;">
-          <div class="section-heading">
-            <h3 style="font-size: 1.35rem; margin: 0;">🌍 Análisis temporal de contaminación</h3>
-          </div>
-          <p style="color: var(--text-muted); margin-bottom: 24px;">Visualización de la evolución de los índices de calidad del aire a lo largo de los meses. Estas animaciones revelan si los problemas de contaminación son estructurales o estacionales — información crítica para calibrar la estrategia de inversión.</p>
-        </div>
+      
 
-        <div class="grid-2">
-          <div class="card">
-            <div class="card-title">📊 Índice EPA animado por mes</div>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">El índice EPA es el resumen oficial de calidad del aire que los gobiernos usan para tomar decisiones regulatorias. Cuando una ciudad supera categoría 3 de forma recurrente, se activan restricciones de tráfico (Zonas de Bajas Emisiones, peajes, prohibiciones). Ver su evolución mes a mes permite identificar ciudades en el umbral de restringir combustión — exactamente donde una red de carga eléctrica tiene máximo futuro.</p>
-            <img src="mapa_EPA_animado.gif" alt="Mapa EPA animado por mes" loading="lazy" style="margin-top: 12px;">
-          </div>
-          <div class="card">
-            <div class="card-title">📈 PM10 vs NO₂ en el tiempo</div>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Combina partículas finas (PM10) con dióxido de nitrógeno (NO₂, específico de tráfico) a lo largo del tiempo. Permite detectar si el problema es estructural (presente todo el año → mercado seguro) o estacional (solo invierno → demanda concentrada). Tamaño = PM10; Color = NO₂.</p>
-            <img src="mapa_PM10_NO2_animado.gif" alt="Mapa PM10 vs NO2 animado" loading="lazy" style="margin-top: 12px;">
-          </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">📊 Índice EPA animado por mes</div>
+        <div class="graph-analysis">
+          <h4>Por qué se hizo</h4>
+          <p>El índice EPA resume el estado general de la calidad del aire y permite ver cuándo una ciudad entra con más frecuencia en niveles que suelen activar regulación o restricciones.</p>
         </div>
+        <img src="gràfics_fotos/autom/mapa_EPA_animado.gif" alt="Mapa EPA animado" loading="lazy">
+        <div class="graph-analysis">
+          <h4>Resultados e interpretación</h4>
+          <p>Si la categoría mala se repite en varios meses, el problema no es puntual: se vuelve un argumento sólido para prever medidas de tráfico y una mayor demanda de soluciones de movilidad eléctrica.</p>
+        </div>
+      </div>
 
-        <div class="section" style="margin-top: 40px;">
-          <div class="section-heading">
-            <h3 style="font-size: 1.35rem; margin: 0;">📋 Metodología: 3 Mapas Estratégicos</h3>
-          </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">📈 PM10 vs NO₂ en el tiempo</div>
+        <div class="graph-analysis">
+          <h4>Por qué se hizo</h4>
+          <p>Combinar partículas y gases de tráfico permite entender si el problema es más estructural o más estacional, que es exactamente lo que cambia la estrategia de entrada al mercado.</p>
         </div>
+        <img src="gràfics_fotos/autom/mapa_PM10_NO2_animado.gif" alt="Mapa PM10 vs NO2 animado" loading="lazy">
+        <div class="graph-analysis">
+          <h4>Resultados e interpretación</h4>
+          <p>Cuando PM10 y NO₂ se mantienen altos a lo largo del tiempo, la necesidad de actuar es más persistente; cuando el pico se concentra en invierno, la demanda regulatoria existe pero se vuelve más estacional.</p>
+        </div>
+      </div>
 
-        <div class="card" style="margin-top: 20px;">
-          <div class="card-title">Por qué estos datos importan para invertir</div>
-          <p><strong>Mapa 1 — Índice EPA (mensual)</strong><br>El índice EPA es el resumen oficial que usan gobiernos para decisiones regulatorias. Cuando una ciudad supera categoría 3 recurrentemente, se activan Zonas de Bajas Emisiones (ZBE), peajes de contaminación y prohibiciones. Ver su evolución permite identificar ciudades en el umbral regulatorio — exactamente donde un concesionario o red de carga tiene máximo futuro.</p>
-          
-          <p style="margin-top: 18px;"><strong>Mapa 2 — PM10 vs NO₂ (temporal)</strong><br>NO₂ y PM10 son generados exclusivamente por motores de combustión interna. Si una ciudad tiene ambos altos simultáneamente, el problema es inequívocamente el tráfico rodado, no industria ni calefacción. Combinar tamaño (PM10) y color (NO₂) en animación temporal revela si el problema es estructural (mercado seguro) o estacional (demanda concentrada).</p>
-          
-          <p style="margin-top: 18px;"><strong>Dashboard Tableau + Ranking EPA</strong><br>Proporciona contexto agregado de 26 capitales europeas, permitiendo benchmarking rápido y ranking de prioridad de inversión basado en datos reales 2024-2026.</p>
-        </div>
+      <div class="conclusion-block">
+        <h3>Conclusión general</h3>
+        <p>A partir de todos los gráficos, el sector automobilístico muestra una presión clara por emisiones y calidad del aire, con focos urbanos y temporales que justifican priorizar ciudades y ejes concretos donde la regulación y la demanda de soluciones limpias pueden llegar antes.</p>
+      </div>
+    </div>
 
-        <div class="conclusion-block" style="margin-top: 40px;">
-          <h3>🎯 Conclusión de Negocio — Oportunidad de Inversión en Movilidad Eléctrica</h3>
-          
-          <p><strong>Tesis de inversión:</strong> Europa enfrenta una restricción regulatoria inevitable del tráfico de combustión. Las ciudades con mayor contaminación (Belgrado, Sarajevo, Ljubljana) implementarán ZBE en los próximos 18-24 meses, generando demanda urgente e inelástica de soluciones eléctricas. La ventana para entrada temprana en estos mercados es limitada.</p>
-          
-          <p style="margin-top: 16px;"><strong>Fase 1 — Mercados de Alta Urgencia (12-18 meses):</strong><br>
-          <span class="highlight">Belgrado y Sarajevo</span> presentan contaminación extrema (PM10 >35 µg/m³, NO₂ persistente), regulación balcánica que acelera ZBE, y <strong>cero competencia eléctrica</strong> consolidada. Oportunidad para establecer: (1) Concesionarios exclusivos, (2) Redes de carga de acceso preferente, (3) Contratos con gobiernos para flotas municipales. ROI proyectado: 35-42% en 3 años.</p>
-          
-          <p style="margin-top: 16px;"><strong>Fase 2 — Mercados Occidentales Maduros (18-36 meses):</strong><br>
-          <span class="highlight">París, Ámsterdam, Madrid</span> tienen ZBE activas y demanda orgánica de eléctricos, pero competencia saturada (Tesla, BMW, VW). Estrategia: acceso a flotas corporativas, soluciones de segunda mano importadas desde Fase 1, carga rápida en ejes logísticos. ROI: 18-25%, pero con menor riesgo regulatorio.</p>
-          
-          <p style="margin-top: 16px;"><strong>Riesgos mitigados:</strong> Datos públicos 2024-2026 validados; tendencia regulatoria irreversible (Pacto Verde Europeo); demanda estructural (no cíclica).</p>
-          
-          <p style="margin-top: 16px;"><strong>Recomendación:</strong> Comenzar negociaciones con gobiernos de Belgrado y Sarajevo para licencias de infraestructura de carga antes de Q3 2026. La ventana se cierra cuando los competidores globales noten la oportunidad (máximo 6 meses).</p>
-        </div>
-      </section>
-    </main>
-  </div>
+  </div><!-- /wrap -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <strong>EnergyInvest</strong> · Consultoría estratégica de inversión energética en Europa<br>
+      <span style="margin-top:6px; display:inline-block;">📞 +34 93 512 8800 · ✉️ hola@energyinvest.eu · Barcelona, España</span><br>
+      <span style="margin-top:8px; display:inline-block; opacity:0.5;">Datos: 26 capitales europeas · 2024–2026</span>
+    </div>
+  </footer>
 
   <script>
-    const btnEnergy = document.getElementById('btn-section-energy');
-    const btnAuto = document.getElementById('btn-section-auto');
-    const panelEnergy = document.getElementById('panel-energy');
-    const panelAuto = document.getElementById('panel-auto');
-    const energyButtons = document.querySelectorAll('[data-energy]');
-    const energyContents = {
-      solar: document.getElementById('content-solar'),
-      hydro: document.getElementById('content-hydro'),
-      wind: document.getElementById('content-wind')
-    };
+    // Panel toggles
+    const btnE = document.getElementById('btn-energy');
+    const btnA = document.getElementById('btn-auto');
+    const pE = document.getElementById('panel-energy');
+    const pA = document.getElementById('panel-auto');
 
-    function setActiveSection(section) {
-      if (section === 'energy') {
-        btnEnergy.classList.add('active');
-        btnAuto.classList.remove('active');
-        panelEnergy.classList.add('active');
-        panelAuto.classList.remove('active');
-      } else {
-        btnAuto.classList.add('active');
-        btnEnergy.classList.remove('active');
-        panelAuto.classList.add('active');
-        panelEnergy.classList.remove('active');
-      }
-    }
-
-    function setActiveEnergy(subsection) {
-      energyButtons.forEach(button => {
-        button.classList.toggle('active', button.dataset.energy === subsection);
-      });
-      Object.entries(energyContents).forEach(([key, element]) => {
-        element.style.display = key === subsection ? 'block' : 'none';
-      });
-    }
-
-    btnEnergy.addEventListener('click', () => setActiveSection('energy'));
-    btnAuto.addEventListener('click', () => setActiveSection('auto'));
-    energyButtons.forEach(button => {
-      button.addEventListener('click', () => setActiveEnergy(button.dataset.energy));
+    btnE.addEventListener('click', () => {
+      btnE.classList.add('active'); btnA.classList.remove('active');
+      pE.classList.add('active'); pA.classList.remove('active');
+    });
+    btnA.addEventListener('click', () => {
+      btnA.classList.add('active'); btnE.classList.remove('active');
+      pA.classList.add('active'); pE.classList.remove('active');
     });
 
-    // Inicialización
-    setActiveSection('energy');
-    setActiveEnergy('solar');
+    // Sub-toggles energy
+    document.querySelectorAll('[data-sub]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-sub]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.energy-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('sub-' + btn.dataset.sub).classList.add('active');
+      });
+    });
+
+    // Show tel in topbar on scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('topbar-tel').style.display = window.scrollY > 200 ? 'block' : 'none';
+    });
   </script>
 </body>
 </html>
