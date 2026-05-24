@@ -26,8 +26,6 @@
       color: var(--text);
       overflow-x: hidden;
     }
-
-    /* ─── NOISE OVERLAY ─── */
     body::before {
       content: '';
       position: fixed;
@@ -40,129 +38,60 @@
 
     .wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
 
-    /* ─── TOPBAR ─── */
+    /* TOPBAR */
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 900;
+      position: sticky; top: 0; z-index: 900;
       background: rgba(7,9,15,0.92);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
       padding: 14px 0;
     }
     .topbar-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      max-width: 1160px; margin: 0 auto; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .logo { display: flex; align-items: center; gap: 12px; }
     .logo-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 40px; height: 40px; border-radius: 10px;
       background: linear-gradient(135deg, var(--accent), #f5c842);
-      display: grid;
-      place-items: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: 1rem;
-      color: #07090f;
+      display: grid; place-items: center;
+      font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1rem; color: #07090f;
     }
-    .logo-text strong {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      letter-spacing: -0.01em;
-    }
-    .logo-text span {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .topbar-cta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    .logo-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .logo-text span { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
     .btn {
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 9px 20px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      border: 1px solid transparent;
-      transition: all 0.2s ease;
-      text-decoration: none;
+      cursor: pointer; border-radius: 999px; padding: 9px 20px;
+      font-size: 0.88rem; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      border: 1px solid transparent; transition: all 0.2s ease; text-decoration: none;
     }
-    .btn-gold {
-      background: linear-gradient(135deg, var(--accent), #f5c842);
-      color: #07090f;
-    }
+    .btn-gold { background: linear-gradient(135deg, var(--accent), #f5c842); color: #07090f; }
     .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(232,168,48,0.3); }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--border);
-    }
+    .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
     .btn-outline:hover { border-color: rgba(255,255,255,0.22); }
 
-    /* ─── HERO ─── */
-    .hero {
-      padding: 90px 0 70px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
+    /* HERO */
+    .hero { padding: 90px 0 70px; position: relative; overflow: hidden; text-align: center; }
     .hero .wrap {
-      position: relative;
-      z-index: 1;
-      min-height: 72vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: relative; z-index: 1;
+      min-height: 72vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
         radial-gradient(ellipse 60% 50% at 70% 40%, rgba(232,168,48,0.07) 0%, transparent 65%),
         radial-gradient(ellipse 40% 40% at 20% 70%, rgba(61,143,255,0.06) 0%, transparent 60%);
       pointer-events: none;
     }
     .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(232,168,48,0.1);
-      border: 1px solid rgba(232,168,48,0.2);
-      border-radius: 999px;
-      padding: 5px 14px;
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(232,168,48,0.1); border: 1px solid rgba(232,168,48,0.2);
+      border-radius: 999px; padding: 5px 14px;
+      font-size: 0.78rem; color: var(--accent); font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 28px;
     }
     .hero-label::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s ease-in-out infinite;
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s ease-in-out infinite;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -170,413 +99,179 @@
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5vw, 5rem);
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
+      font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.04;
+      letter-spacing: -0.03em; margin-bottom: 24px;
+      max-width: 760px; margin-left: auto; margin-right: auto; text-align: center;
     }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
     .hero-copy {
-      max-width: 620px;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 1.05rem;
-      margin-bottom: 36px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
+      max-width: 620px; color: var(--muted); line-height: 1.8; font-size: 1.05rem;
+      margin-bottom: 36px; margin-left: auto; margin-right: auto; text-align: center;
     }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
     .hero-copy strong { color: var(--text); }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
-    /* ─── CRISIS BANNER ─── */
+    /* CRISIS */
     .crisis {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--red);
-      border-radius: 16px;
-      padding: 28px 32px;
-      margin: 48px 0;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 24px;
-      align-items: start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--red); border-radius: 16px;
+      padding: 28px 32px; margin: 48px 0;
     }
-    .crisis-icon {
-      font-size: 2.2rem;
-      line-height: 1;
-      margin-top: 2px;
-    }
-    .crisis h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 14px;
-    }
-    .crisis-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-    .tag {
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
+    .crisis h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 14px; text-align: center; }
+    .crisis p { color: var(--muted); line-height: 1.75; font-size: 0.97rem; text-align: center; }
+    .crisis p strong { color: var(--text); }
+    .crisis-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; justify-content: center; }
+    .tag { padding: 4px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; }
     .tag-red { background: rgba(232,88,88,0.12); border: 1px solid rgba(232,88,88,0.25); color: #f08080; }
     .tag-gold { background: rgba(232,168,48,0.12); border: 1px solid rgba(232,168,48,0.25); color: var(--accent); }
     .tag-blue { background: rgba(61,143,255,0.1); border: 1px solid rgba(61,143,255,0.2); color: #7ab4ff; }
-    .crisis p { color: var(--muted); line-height: 1.75; font-size: 0.97rem; }
-    .crisis p strong { color: var(--text); }
 
-    /* ─── WHY NOW ─── */
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 48px 0;
-    }
+    /* WHY GRID */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 48px 0; }
     .why-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 24px; text-align: center;
       transition: border-color 0.2s, transform 0.2s;
     }
     .why-card:hover { border-color: rgba(232,168,48,0.2); transform: translateY(-2px); }
     .why-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--accent);
-      opacity: 0.5;
-      line-height: 1;
-      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900;
+      color: var(--accent); opacity: 0.5; line-height: 1; margin-bottom: 8px;
     }
     .why-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
     .why-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
 
-    /* ─── DIVIDER ─── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 56px 0;
-    }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
 
-    /* ─── TEAM ─── */
+    /* TEAM */
     .section-eyebrow {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px; text-align: center;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.02em;
+      margin-bottom: 12px; text-align: center;
     }
     .section-sub {
-      color: var(--muted);
-      font-size: 0.97rem;
-      line-height: 1.7;
-      max-width: 560px;
-      margin-bottom: 40px;
+      color: var(--muted); font-size: 0.97rem; line-height: 1.7;
+      max-width: 560px; margin-bottom: 40px; text-align: center;
+      margin-left: auto; margin-right: auto;
     }
-    .team-grid {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .team-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      width: 170px;
-    }
+    .team-grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .team-card { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 170px; }
     .avatar {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
+      width: 88px; height: 88px; border-radius: 50%;
       background: linear-gradient(135deg, var(--surface2), var(--surface));
-      border: 2px solid var(--border);
-      display: grid;
-      place-items: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent);
-      position: relative;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: default;
-      overflow: hidden;
+      border: 2px solid var(--border); display: grid; place-items: center;
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+      color: var(--accent); position: relative; transition: border-color 0.2s, transform 0.2s;
+      cursor: default; overflow: hidden;
     }
-    .avatar-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-      position: relative;
-      z-index: 1;
-    }
+    .avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; position: relative; z-index: 1; }
     .avatar::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.08), transparent 60%);
     }
-    .team-card:hover .avatar {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(232,168,48,0.18);
-    }
-    .team-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-align: center;
-    }
-    .team-role {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-align: center;
-    }
-    .team-contact {
-      font-size: 0.75rem;
-      color: var(--accent);
-      opacity: 0.8;
-      text-align: center;
-    }
+    .team-card:hover .avatar { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(232,168,48,0.18); }
+    .team-name { font-weight: 600; font-size: 0.95rem; text-align: center; }
+    .team-role { font-size: 0.78rem; color: var(--muted); text-align: center; }
+    .team-contact { font-size: 0.75rem; color: var(--accent); opacity: 0.8; text-align: center; }
 
-    /* ─── CONTACT CTA ─── */
+    /* CTA */
     .cta-block {
       background: linear-gradient(135deg, rgba(232,168,48,0.08), rgba(61,143,255,0.05));
-      border: 1px solid rgba(232,168,48,0.15);
-      border-radius: 24px;
-      padding: 44px 40px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: center;
-      margin: 56px 0;
+      border: 1px solid rgba(232,168,48,0.15); border-radius: 24px;
+      padding: 44px 40px; display: grid; grid-template-columns: 1fr auto;
+      gap: 32px; align-items: center; margin: 56px 0; text-align: center;
     }
-    .cta-block h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-    .cta-block p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; max-width: 480px; }
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
-    }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
+    .cta-block > div:first-child { text-align: center; }
+    .cta-block h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; }
+    .cta-block p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; max-width: 480px; margin: 0 auto; }
+    .contact-info { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    .contact-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--muted); }
     .contact-item strong { color: var(--text); }
-    .contact-icon { font-size: 1rem; }
 
-    /* ─── DASHBOARD AREA ─── */
-    .dash-intro {
-      margin: 56px 0 32px;
-    }
-    .panel-toggles {
-      display: flex;
-      gap: 10px;
-      margin-top: 28px;
-      flex-wrap: wrap;
-    }
+    /* DASHBOARD */
+    .dash-intro { margin: 56px 0 32px; text-align: center; }
+    .panel-toggles { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; justify-content: center; }
     .toggle-btn {
-      cursor: pointer;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 10px 22px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      background: transparent;
-      color: var(--muted);
-      transition: all 0.2s ease;
+      cursor: pointer; border: 1px solid var(--border); border-radius: 999px;
+      padding: 10px 22px; font-size: 0.88rem; font-weight: 600;
+      font-family: 'DM Sans', sans-serif; background: transparent; color: var(--muted); transition: all 0.2s ease;
     }
     .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
-    .toggle-btn.active {
-      background: rgba(232,168,48,0.12);
-      border-color: rgba(232,168,48,0.3);
-      color: var(--accent);
-    }
+    .toggle-btn.active { background: rgba(232,168,48,0.12); border-color: rgba(232,168,48,0.3); color: var(--accent); }
 
-    /* original dashboard styles adapted */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px;
-      text-align: center;
-    }
+    /* CARDS */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 26px; text-align: center; }
     .card-title {
-      text-align: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
+      text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--accent);
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.09em;
     }
     .card img { width: 100%; height: auto; border-radius: 14px; display: block; margin: 10px auto 0; }
-    .tableauPlaceholder {
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
-    }
-    .tableauPlaceholder object,
-    .tableauPlaceholder iframe,
-    .tableauViz {
-      width: 100% !important;
-      max-width: 100% !important;
-    }
+
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
-    .summary-card {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 18px;
-      background: rgba(255,255,255,0.02);
-      text-align: center;
-    }
+    .summary-card { border-radius: 16px; border: 1px solid var(--border); padding: 18px; background: rgba(255,255,255,0.02); text-align: center; }
     .summary-card strong { display: block; font-size: 1.2rem; margin-bottom: 4px; }
     .summary-card span { color: var(--muted); font-size: 0.82rem; }
+
     .graph-analysis {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 18px;
-      margin: 14px 0;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 16px; padding: 16px 18px; margin: 14px 0;
     }
     .graph-analysis h4 {
-      text-align: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent2);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--accent2);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
     }
-    .graph-analysis p {
-      color: var(--muted);
-      line-height: 1.72;
-      font-size: 0.93rem;
-      text-align: justify;
-    }
+    .graph-analysis p { color: var(--muted); line-height: 1.72; font-size: 0.93rem; text-align: center; }
+
     .conclusion-block {
-      background: rgba(61,143,255,0.06);
-      border: 1px solid rgba(61,143,255,0.12);
-      border-radius: 20px;
-      padding: 26px;
-      margin-top: 26px;
+      background: rgba(61,143,255,0.06); border: 1px solid rgba(61,143,255,0.12);
+      border-radius: 20px; padding: 26px; margin-top: 26px;
     }
     .conclusion-block h3 { margin-bottom: 12px; font-size: 1.2rem; text-align: center; }
-    .conclusion-block p { color: var(--muted); line-height: 1.75; margin-bottom: 10px; font-size: 0.95rem; text-align: justify; }
+    .conclusion-block p { color: var(--muted); line-height: 1.75; margin-bottom: 10px; font-size: 0.95rem; text-align: center; }
     .highlight { color: #3dcc8f; font-weight: 600; }
 
     .panel-section { display: none; }
     .panel-section.active { display: block; }
-
-    .sub-toggles {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 26px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    .sub-toggles { display: flex; gap: 8px; margin-bottom: 26px; flex-wrap: wrap; justify-content: center; }
     .sub-btn {
-      cursor: pointer;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 7px 18px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--muted);
-      transition: all 0.2s;
+      cursor: pointer; background: transparent; border: 1px solid var(--border);
+      border-radius: 999px; padding: 7px 18px; font-size: 0.84rem; font-weight: 600;
+      font-family: 'DM Sans', sans-serif; color: var(--muted); transition: all 0.2s;
     }
-    .sub-btn.active {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.18);
-      color: var(--text);
-    }
+    .sub-btn.active { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); color: var(--text); }
     .sub-btn:hover { border-color: rgba(255,255,255,0.16); color: var(--text); }
-
     .energy-content { display: none; }
     .energy-content.active { display: block; }
 
-    #panel-auto {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-    #panel-auto .card {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .card.no2-compact {
-      text-align: center;
-    }
-
-    .tableauPlaceholder,
-    .tableauPlaceholder object,
-    .tableauPlaceholder iframe {
-      display: block;
-    }
-
-    /* FOOTER */
     footer {
-      margin-top: 80px;
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.82rem;
+      margin-top: 80px; border-top: 1px solid var(--border);
+      padding: 32px 0; text-align: center; color: var(--muted); font-size: 0.82rem;
     }
     footer strong { color: var(--text); }
 
     @media (max-width: 900px) {
       .why-grid, .grid-2, .grid-3, .summary-row { grid-template-columns: 1fr; }
       .cta-block { grid-template-columns: 1fr; }
-      .contact-info { align-items: flex-start; }
-      .crisis { grid-template-columns: 1fr; }
+      .contact-info { align-items: center; }
     }
     @media (max-width: 640px) {
       .hero h1 { font-size: 2.4rem; }
       .team-grid { gap: 14px; }
       .team-card { width: 130px; }
       .avatar { width: 72px; height: 72px; font-size: 1.1rem; }
+      .cta-block { padding: 28px 20px; }
+      .wrap { padding: 0 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOPBAR -->
   <nav class="topbar">
     <div class="topbar-inner">
       <div class="logo">
@@ -593,7 +288,6 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="wrap">
@@ -609,27 +303,21 @@
     </div>
   </section>
 
-  <!-- CRISIS BANNER -->
   <div class="wrap">
     <div class="crisis">
-      <div>
-        <h2>El suministro global está bloqueado</h2>
-        <p>
-          Con <strong>Estados Unidos marcando el rumbo en Venezuela y en el Golfo Pérsico (los grandes sitios en el mundo de exportación de Petróleo (energía)</strong>, y con un escenario internacional en el que esas alianzas entre Europa y los EEUU ya no ofrecen la estabilidad que Europa esperaba, la dependencia energética vuelve a quedar en primer plano. Las importaciones tradicionales ya no son suficientes ni seguras. La Unión Europea ha acelerado su hoja de ruta hacia la autonomía energética — y esto genera una ventana de inversión única para quienes actúen con información y criterio.
-        </p>
-        <p style="margin-top:12px;">
-          <strong>EnergyInvest</strong> existe para que esa inversión se haga bien: en el lugar correcto, en el momento adecuado, con los datos que respaldan cada decisión.
-        </p>
-        <div class="crisis-tags">
-          <span class="tag tag-red">Petróleo venezolano bloqueado</span>
-          <span class="tag tag-red">Petróleo del Golfo Pérsico restringido</span>
-          <span class="tag tag-gold">Europa busca autosuficiencia</span>
-          <span class="tag tag-blue">Ventana de inversión abierta</span>
-        </div>
+      <h2>El suministro global está bloqueado</h2>
+      <p>
+        Con <strong>Estados Unidos marcando el rumbo en Venezuela y en el Golfo Pérsico</strong> — los grandes bloques de exportación de petróleo a nivel mundial —, y con un escenario internacional en el que las alianzas tradicionales ya no ofrecen la estabilidad que Europa esperaba, la dependencia energética vuelve a quedar en primer plano. Las importaciones tradicionales ya no son suficientes ni seguras. La Unión Europea ha acelerado su hoja de ruta hacia la autonomía energética — y esto genera una ventana de inversión única para quienes actúen con información y criterio.
+      </p>
+      <p style="margin-top:12px;"><strong>EnergyInvest</strong> existe para que esa inversión se haga bien: en el lugar correcto, en el momento adecuado, con los datos que respaldan cada decisión.</p>
+      <div class="crisis-tags">
+        <span class="tag tag-red">Petróleo venezolano bloqueado</span>
+        <span class="tag tag-red">Golfo Pérsico restringido</span>
+        <span class="tag tag-gold">Europa busca autosuficiencia</span>
+        <span class="tag tag-blue">Ventana de inversión abierta</span>
       </div>
     </div>
 
-    <!-- WHY GRID -->
     <div class="why-grid">
       <div class="why-card">
         <div class="why-num">01</div>
@@ -650,42 +338,35 @@
 
     <hr class="divider">
 
-    <!-- TEAM -->
     <div id="equipo">
       <div class="section-eyebrow">El equipo</div>
       <h2 class="section-title">Cinco personas.<br>Una sola misión.</h2>
       <p class="section-sub">Somos un equipo especializado en análisis de datos energéticos y estrategia de inversión. Combinamos experiencia en mercados europeos, modelado de datos y consultoría para ayudarte a tomar las mejores decisiones.</p>
-
       <div class="team-grid">
-        <!-- Carlos -->
         <div class="team-card">
           <div class="avatar">C</div>
           <div class="team-name">Carlos</div>
           <div class="team-role">Director de Estrategia</div>
           <div class="team-contact">carlos@energyinvest.eu</div>
         </div>
-        <!-- Pol -->
         <div class="team-card">
           <div class="avatar">P</div>
-           <div class="team-name">Pol</div>
-           <div class="team-role">Analista de Mercados</div>
-           <div class="team-contact">pol@energyinvest.eu</div>
+          <div class="team-name">Pol</div>
+          <div class="team-role">Analista de Mercados</div>
+          <div class="team-contact">pol@energyinvest.eu</div>
         </div>
-        <!-- Jan -->
         <div class="team-card">
           <div class="avatar"><img class="avatar-img" src="fotos_cares/jan.jpeg" alt="Jan"></div>
           <div class="team-name">Jan</div>
           <div class="team-role">Data Scientist</div>
           <div class="team-contact">jan@energyinvest.eu</div>
         </div>
-        <!-- Guillem -->
         <div class="team-card">
           <div class="avatar">G</div>
           <div class="team-name">Guillem</div>
           <div class="team-role">Relaciones con Inversores</div>
           <div class="team-contact">guillem@energyinvest.eu</div>
         </div>
-        <!-- Raúl -->
         <div class="team-card">
           <div class="avatar">R</div>
           <div class="team-name">Raúl</div>
@@ -697,7 +378,6 @@
 
     <hr class="divider">
 
-    <!-- CONTACT CTA -->
     <div class="cta-block" id="contacto">
       <div>
         <h2>¿Tienes una oportunidad en mente?<br>Hablemos.</h2>
@@ -705,27 +385,15 @@
         <a href="mailto:hola@energyinvest.eu" class="btn btn-gold" style="display:inline-block; margin-top:20px;">Solicitar reunión →</a>
       </div>
       <div class="contact-info">
-        <div class="contact-item">
-          <span class="contact-icon">📞</span>
-          <span><strong>+34 93 512 8800</strong></span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-icon">✉️</span>
-          <span><strong>hola@energyinvest.eu</strong></span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-icon">📍</span>
-          <span>Barcelona, España</span>
-        </div>
-        <div class="contact-item" style="margin-top:6px; font-size:0.82rem; color:var(--muted);">
-          Agendamos reunión en nuestra agenda online — respondemos en menos de 24h.
-        </div>
+        <div class="contact-item"><span>📞</span><span><strong>+34 93 512 8800</strong></span></div>
+        <div class="contact-item"><span>✉️</span><span><strong>hola@energyinvest.eu</strong></span></div>
+        <div class="contact-item"><span>📍</span><span>Barcelona, España</span></div>
+        <div style="margin-top:6px; font-size:0.82rem; color:var(--muted); text-align:center;">Respondemos en menos de 24h.</div>
       </div>
     </div>
 
     <hr class="divider">
 
-    <!-- ANALYSIS PANELS -->
     <div id="analisis" class="dash-intro">
       <div class="section-eyebrow">Análisis de datos</div>
       <h2 class="section-title">26 capitales.<br>Datos reales 2024–2026.</h2>
@@ -750,26 +418,26 @@
           <p style="color:var(--muted); font-size:0.92rem; line-height:1.7;">Evaluación basada en índice UV, condiciones de cielo y temperatura promedio. La animación mensual muestra dónde y cuándo la radiación solar es más intensa a lo largo del año.</p>
           <div class="graph-analysis">
             <h4>Por qué se hizo</h4>
-            <p>Se utiliza para medir la disponibilidad solar real mediante el índice UV, que refleja la radiación ultravioleta incidente. El índice UV ayuda a estimar el potencial fotovoltaico efectivo a lo largo del año y a identificar meses con mayor exposición.</p>
+            <p>Se utiliza para medir la disponibilidad solar real mediante el índice UV, que refleja la radiación ultravioleta incidente. Ayuda a estimar el potencial fotovoltaico efectivo a lo largo del año y a identificar meses con mayor exposición.</p>
           </div>
           <img src="gràfics_fotos/solar/uv_index_animado.gif" alt="Mapa UV animado por mes" loading="lazy">
           <div class="graph-analysis">
             <h4>Resultados e interpretación</h4>
-            <p>Las ciudades del sur concentran más meses favorables y muestran una exposición más estable, mientras que las zonas del norte dependen más de ventanas estacionales. Eso hace más atractivos los mercados con sol constante y menos variabilidad.</p>
+            <p>Las ciudades del sur concentran más meses favorables y muestran una exposición más estable, mientras que las zonas del norte dependen más de ventanas estacionales.</p>
           </div>
           <div class="graph-analysis">
             <h4>Por qué se hizo</h4>
-            <p>El dashboard completa la animación mensual y permite contrastar de forma interactiva el índice UV con la nube y otras variables, para no quedarse solo con una lectura visual simple.</p>
+            <p>El dashboard completa la animación mensual y permite contrastar de forma interactiva el índice UV con la nube y otras variables.</p>
           </div>
           <div class='tableauPlaceholder' id='viz1779571705371' style='position: relative'><noscript><a href='#'><img alt='solar ' src='https://public.tableau.com/static/images/so/solaruv_indexxclouds/Dashboard1/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /> <param name='name' value='solaruv_indexxclouds/Dashboard1' /> <param name='tabs' value='no' /> <param name='toolbar' value='yes' /> <param name='static_image' value='https://public.tableau.com/static/images/so/solaruv_indexxclouds/Dashboard1/1.png' /> <param name='animate_transition' value='yes' /> <param name='display_static_image' value='yes' /> <param name='display_spinner' value='yes' /> <param name='display_overlay' value='yes' /> <param name='display_count' value='yes' /> <param name='language' value='es-ES' /></object></div>
-          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779571705371');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height='680px';} else { vizElement.style.width='100%';vizElement.style.height='560px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779571705371');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
           <div class="graph-analysis">
             <h4>Resultados e interpretación</h4>
-            <p>La visualización interactiva confirma el mismo patrón general: cuanto más al sur y más despejado es el entorno, mayor es la oportunidad de capturar rendimiento fotovoltaico de forma continua.</p>
+            <p>La visualización interactiva confirma el mismo patrón: cuanto más al sur y más despejado es el entorno, mayor es la oportunidad de capturar rendimiento fotovoltaico de forma continua.</p>
           </div>
           <div class="conclusion-block">
             <h3>Conclusión general</h3>
-            <p>A partir de todos los gráficos, la energía solar se concentra en las ciudades del sur de Europa, donde la radiación es más estable, la nubosidad penaliza menos y el retorno potencial es más rápido que en las zonas nórdicas.</p>
+            <p>La energía solar se concentra en las ciudades del sur de Europa, donde la radiación es más estable, la nubosidad penaliza menos y el retorno potencial es más rápido que en las zonas nórdicas.</p>
           </div>
         </div>
       </div>
@@ -785,23 +453,21 @@
           <img src="gràfics_fotos/hidràulica/rain_animado.gif" alt="Mapa de lluvia animado por mes" loading="lazy">
           <div class="graph-analysis">
             <h4>Resultados e interpretación</h4>
-            <p>Las ciudades del noroeste y del entorno atlántico presentan más lluvia y una mayor regularidad, mientras que las regiones más secas muestran una ventaja mucho menor para este tipo de inversión.</p>
+            <p>Las ciudades del noroeste y del entorno atlántico presentan más lluvia y mayor regularidad, mientras que las regiones más secas muestran una ventaja menor para este tipo de inversión.</p>
           </div>
           <div class="graph-analysis">
             <h4>Por qué se hizo</h4>
-            <p>Se usa la presión atmosférica como referencia porque está relacionada con las precipitaciones: la alta presión suele asociarse a tiempo estable y la baja presión a nubes y lluvia.</p>
+            <p>Se usa la presión atmosférica como referencia porque está relacionada con las precipitaciones: la alta presión se asocia a tiempo estable y la baja presión a nubes y lluvia.</p>
           </div>
-          
-          <div class='tableauPlaceholder' id='viz1779572502620' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https://public.tableau.com/static/images/NN/NNPF8QRPM/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared/NNPF8QRPM' /> <param name='toolbar' value='yes' /><param name='static_image' value='https://public.tableau.com/static/images/NN/NNPF8QRPM/1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>
-          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779572502620');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height='680px';} else { vizElement.style.width='100%';vizElement.style.height='560px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          <div class='tableauPlaceholder' id='viz1779572502620' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https://public.tableau.com/static/images/NN/NNPF8QRPM/1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /> <param name='path' value='shared/NNPF8QRPM' /> <param name='toolbar' value='yes' /><param name='static_image' value='https://public.tableau.com/static/images/NN/NNPF8QRPM/1.png' /> <param name='animate_transition' value='yes' /> <param name='display_static_image' value='yes' /> <param name='display_spinner' value='yes' /> <param name='display_overlay' value='yes' /> <param name='display_count' value='yes' /> <param name='language' value='es-ES' /></object></div>
+          <script type='text/javascript'>                    var divElement = document.getElementById('viz1779572502620');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
           <div class="graph-analysis">
             <h4>Resultados e interpretación</h4>
-            
-            <p>En este gráfico no se distinguen diferencias significativas: los patrones son muy constantes entre las ciudades y apenas se aprecian variaciones, así que no nos guiaremos por eso.</p>
+            <p>En este gráfico no se distinguen diferencias significativas: los patrones son muy constantes entre las ciudades y apenas se aprecian variaciones.</p>
           </div>
           <div class="conclusion-block">
             <h3>Conclusión general</h3>
-            <p>A partir de todos los gráficos, la hidráulica tiene más sentido en ciudades y áreas con lluvia recurrente, humedad estable y menor estacionalidad, porque eso sostiene mejor la generación y reduce el riesgo operativo.</p>
+            <p>La hidráulica tiene más sentido en ciudades y áreas con lluvia recurrente, humedad estable y menor estacionalidad, porque eso sostiene mejor la generación y reduce el riesgo operativo.</p>
           </div>
         </div>
       </div>
@@ -812,7 +478,7 @@
           <p style="color:var(--muted); font-size:0.92rem; line-height:1.7;">Evaluación sobre vientos sostenidos, estabilidad climática y zonas de baja densidad urbana. El GIF mensual muestra los cambios de velocidad del viento a lo largo del año.</p>
           <div class="graph-analysis">
             <h4>Por qué se hizo</h4>
-            <p>Se necesita para medir la intensidad del recurso eólico, pero también conviene estudiar la dirección del viento. De momento solo tenemos datos por ciudades, aunque para este caso tendría más sentido analizar zonas concretas, porque los rangos son muy grandes y una ciudad puede ocultar variaciones locales importantes.</p>
+            <p>Se necesita para medir la intensidad del recurso eólico. De momento solo tenemos datos por ciudades, aunque para este caso tendría más sentido analizar zonas concretas, porque los rangos son muy grandes y una ciudad puede ocultar variaciones locales importantes.</p>
           </div>
           <img src="gràfics_fotos/eòlica/wind_kph_animado.gif" alt="Mapa de velocidad del viento animado" loading="lazy">
           <div class="graph-analysis">
@@ -821,7 +487,7 @@
           </div>
           <div class="conclusion-block">
             <h3>Conclusión general</h3>
-            <p>A partir de todos los gráficos, la eólica no debería interpretarse solo por ciudad, sino por zonas con topografía y exposición similares, porque ahí es donde la dirección y la velocidad del viento se vuelven realmente útiles para decidir inversiones.</p>
+            <p>La eólica no debería interpretarse solo por ciudad, sino por zonas con topografía y exposición similares, porque ahí es donde la dirección y la velocidad del viento se vuelven realmente útiles para decidir inversiones.</p>
           </div>
         </div>
       </div>
@@ -829,8 +495,9 @@
 
     <!-- AUTO PANEL -->
     <div class="panel-section" id="panel-auto">
+
       <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">Dashboard interactivo CO2 y NO₂</div>
+        <div class="card-title">Dashboard interactivo CO₂ y NO₂</div>
         <div class="graph-analysis">
           <h4>Por qué se hizo</h4>
           <p>Este dashboard sirve para cruzar contaminantes directamente ligados al tráfico y comprobar de forma interactiva dónde la presión sobre movilidad y calidad del aire es mayor.</p>
@@ -851,23 +518,21 @@
             <param name='language' value='es-ES'/>
           </object>
         </div>
-          <script type='text/javascript'>
+        <script type='text/javascript'>
           var d2=document.getElementById('viz1778660982338');
           var o2=d2.getElementsByTagName('object')[0];
           if(d2.offsetWidth>800){o2.style.width='100%';o2.style.height='827px';}
-          else if(d2.offsetWidth>500){o2.style.width='100%';o2.style.height='680px';}
-          else{o2.style.width='100%';o2.style.height='560px';}
+          else if(d2.offsetWidth>500){o2.style.width='100%';o2.style.height='827px';}
+          else{o2.style.width='100%';o2.style.height='727px';}
           var s2=document.createElement('script');
           s2.src='https://public.tableau.com/javascripts/api/viz_v1.js';
           o2.parentNode.insertBefore(s2,o2);
         </script>
         <div class="graph-analysis">
           <h4>Resultados e interpretación</h4>
-          <p>Cuando CO2 y NO₂ aparecen altos a la vez, el problema de tráfico queda mejor identificado y la oportunidad para soluciones eléctricas o de baja emisión gana claridad.</p>
+          <p>Cuando CO₂ y NO₂ aparecen altos a la vez, el problema de tráfico queda mejor identificado y la oportunidad para soluciones eléctricas o de baja emisión gana claridad.</p>
         </div>
       </div>
-
-      
 
       <div class="card" style="margin-bottom:20px;">
         <div class="card-title">📊 Índice EPA animado por mes</div>
@@ -897,13 +562,12 @@
 
       <div class="conclusion-block">
         <h3>Conclusión general</h3>
-        <p>A partir de todos los gráficos, el sector automobilístico muestra una presión clara por emisiones y calidad del aire, con focos urbanos y temporales que justifican priorizar ciudades y ejes concretos donde la regulación y la demanda de soluciones limpias pueden llegar antes.</p>
+        <p>El sector automovilístico muestra una presión clara por emisiones y calidad del aire, con focos urbanos y temporales que justifican priorizar ciudades y ejes concretos donde la regulación y la demanda de soluciones limpias pueden llegar antes.</p>
       </div>
     </div>
 
-  </div><!-- /wrap -->
+  </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="wrap">
       <strong>EnergyInvest</strong> · Consultoría estratégica de inversión energética en Europa<br>
@@ -914,54 +578,33 @@
 
   <script>
     // Panel toggles
-    const btnE = document.getElementById('btn-energy');
-    const btnA = document.getElementById('btn-auto');
-    const pE = document.getElementById('panel-energy');
-    const pA = document.getElementById('panel-auto');
+    var btnE = document.getElementById('btn-energy');
+    var btnA = document.getElementById('btn-auto');
+    var pE   = document.getElementById('panel-energy');
+    var pA   = document.getElementById('panel-auto');
 
-    btnE.addEventListener('click', () => {
-      btnE.classList.add('active'); btnA.classList.remove('active');
-      pE.classList.add('active'); pA.classList.remove('active');
-      refreshVisibleTableaus(pE);
+    btnE.addEventListener('click', function() {
+      btnE.classList.add('active');    btnA.classList.remove('active');
+      pE.classList.add('active');      pA.classList.remove('active');
     });
-    btnA.addEventListener('click', () => {
-      btnA.classList.add('active'); btnE.classList.remove('active');
-      pA.classList.add('active'); pE.classList.remove('active');
-      refreshVisibleTableaus(pA);
+    btnA.addEventListener('click', function() {
+      btnA.classList.add('active');    btnE.classList.remove('active');
+      pA.classList.add('active');      pE.classList.remove('active');
     });
 
-    // Sub-toggles energy
-    document.querySelectorAll('[data-sub]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-sub]').forEach(b => b.classList.remove('active'));
+    // Sub-toggles
+    document.querySelectorAll('[data-sub]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('[data-sub]').forEach(function(b){ b.classList.remove('active'); });
         btn.classList.add('active');
-        document.querySelectorAll('.energy-content').forEach(c => c.classList.remove('active'));
-        const activeSub = document.getElementById('sub-' + btn.dataset.sub);
-        activeSub.classList.add('active');
-        refreshVisibleTableaus(activeSub);
+        document.querySelectorAll('.energy-content').forEach(function(c){ c.classList.remove('active'); });
+        var sub = document.getElementById('sub-' + btn.dataset.sub);
+        sub.classList.add('active');
       });
     });
 
-    function refreshVisibleTableaus(scope) {
-      if (!scope) return;
-      scope.querySelectorAll('.tableauPlaceholder').forEach((placeholder) => {
-        const viz = placeholder.querySelector('object, iframe');
-        if (!viz) return;
-        const width = placeholder.offsetWidth || scope.offsetWidth || window.innerWidth;
-        const height = width > 800 ? 827 : width > 500 ? 680 : 560;
-        viz.style.width = '100%';
-        viz.style.maxWidth = '100%';
-        viz.style.height = height + 'px';
-      });
-      window.dispatchEvent(new Event('resize'));
-    }
-
-    window.addEventListener('load', () => {
-      refreshVisibleTableaus(document.getElementById('panel-energy'));
-    });
-
-    // Show tel in topbar on scroll
-    window.addEventListener('scroll', () => {
+    // Topbar tel on scroll
+    window.addEventListener('scroll', function() {
       document.getElementById('topbar-tel').style.display = window.scrollY > 200 ? 'block' : 'none';
     });
   </script>
